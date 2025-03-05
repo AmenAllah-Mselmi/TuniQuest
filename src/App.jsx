@@ -52,9 +52,9 @@ function App() {
         <Route
           path="/explore"
           element={
-            <PrivateRoute>
+            
               <Explore />
-            </PrivateRoute>
+            
           }
         />
         <Route
