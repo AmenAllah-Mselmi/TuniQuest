@@ -29,7 +29,7 @@ function Sidebar() {
     <div className="flex h-screen bg-gray-50">
       {/* Sidebar */}
       <div
-        className={`bg-gradient-to-b from-indigo-600 to-blue-600 w-64 space-y-8 py-8 px-4 fixed inset-y-0 left-0   transform ${
+        className={`bg-gradient-to-b from-indigo-600 to-blue-300 w-64 space-y-8 py-8 px-4 fixed inset-y-0 left-0   transform ${
           isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
         } lg:translate-x-0 transition-transform duration-300 ease-in-out z-30 shadow-2xl`}
       >
@@ -47,7 +47,7 @@ function Sidebar() {
             <FaUser className="text-white" />
           </div>
           <div>
-            <p className="text-white font-semibold">John Doe</p>
+            <p className="text-white font-semibold">AmenAllah</p>
             <p className="text-sm text-blue-200">Admin</p>
           </div>
         </div>
@@ -57,38 +57,38 @@ function Sidebar() {
           <ul className="space-y-2">
             <li>
               <Link
-                to="/dashboard"
+                to="/admin"
                 className="flex items-center py-3 px-4 text-white hover:bg-blue-700 rounded-lg transition duration-200"
               >
                 <FaHome className="w-5 h-5 mr-3" />
-                Dashboard
+                Home
               </Link>
             </li>
             <li>
               <Link
-                to="/products"
+                to="/admin/users"
                 className="flex items-center py-3 px-4 text-white hover:bg-blue-700 rounded-lg transition duration-200"
               >
                 <FaBox className="w-5 h-5 mr-3" />
-                Products
+                Users
               </Link>
             </li>
             <li>
               <Link
-                to="/orders"
+                to="/admin/challenges"
                 className="flex items-center py-3 px-4 text-white hover:bg-blue-700 rounded-lg transition duration-200"
               >
                 <FaShoppingCart className="w-5 h-5 mr-3" />
-                Orders
+                Challenges
               </Link>
             </li>
             <li>
               <Link
-                to="/settings"
+                to="/admin/marketplace"
                 className="flex items-center py-3 px-4 text-white hover:bg-blue-700 rounded-lg transition duration-200"
               >
                 <FaCog className="w-5 h-5 mr-3" />
-                Settings
+                MarketPlace
               </Link>
             </li>
           </ul>
@@ -98,7 +98,7 @@ function Sidebar() {
         <div className="mt-8">
           <button
             onClick={handleLogout}
-            className="w-full flex items-center justify-center py-3 px-4 text-white hover:bg-blue-700 rounded-lg transition duration-200"
+            className="w-full flex items-center  py-3 px-4 text-white hover:bg-blue-700 rounded-lg transition duration-200"
           >
             <FaSignOutAlt className="w-5 h-5 mr-3" />
             Logout
@@ -106,8 +106,8 @@ function Sidebar() {
         </div>
 
         {/* Footer */}
-        <div className="absolute bottom-0 left-0 right-0 p-4 bg-blue-700 text-center">
-          <p className="text-sm text-blue-200">© 2023 MyApp. All rights reserved.</p>
+        <div className="absolute bottom-0 left-0 right-0 p-4 bg-blue-500 text-center text-white">
+          <p className="text-sm text-blue-200">© 2025 All rights reserved.</p>
         </div>
       </div>
 

@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import useAuthStore from './stores/authStore';
-import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Explore from './pages/Explore';
 import Learn from './pages/Learn';
@@ -11,7 +10,12 @@ import Dashboard from './components/Dashboard';
 import AdminDashboard from './components/AdminDashboard';
 import Contact from './components/contact';
 import Offers from "./pages/Offers";
-import AdminDashboard1 from './pages/AdminDashboard';
+import AdminDashboard1 from './pages/AdminSidebar';
+import FirstPage from './pages/FirstPage';
+import UserManagement from './pages/UserSidebar';
+import ChallengesDashbaord from './pages/ChallengesDashboard';
+import UserDashboard from './pages/UserDashboard';
+import VirtualReality from "./pages/VirtualReality";
 function PrivateRoute({ children, roles = [] }) {
   const { user, profile, loading } = useAuthStore();
 
@@ -39,10 +43,12 @@ function App() {
 
   return (
     <div className="min-h-screen bg-slate-50">
-      <Navbar />
+      
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path='/' element={<FirstPage/>}>
+        <Route index element={<Home />}/>
         <Route path="/auth" element={<Auth />} />
+        <Route path='/offers' element={<Offers/>}/>
         <Route
           path="/explore"
           element={
@@ -51,16 +57,12 @@ function App() {
             </PrivateRoute>
           }
         />
-        <Route path='/offers' element={<Offers/>}/>
         <Route
-          path="/learn"
+          path="/contact"
           element={
-            
-              <Learn />
-            
-          }
-        />
-        <Route
+              <Contact />
+          }/>
+           <Route
           path="/marketplace"
           element={
             
@@ -68,20 +70,34 @@ function App() {
             
           }
         />
-        <Route
-          path="/contact"
+         <Route
+          path="/learn"
           element={
-              <Contact />
+            
+              <Learn />
+            
           }
         />
+        </Route>
+        <Route path='/admin' element={<AdminDashboard1 />}>
+        <Route index element={<AdminDashboard/>} />
+        <Route path='/admin/users' element={<UserDashboard/>} />
+        <Route path='/admin/challenges' element={<ChallengesDashbaord/>} />
+        <Route path="/admin/marketplace" element={<Marketplace />} />
+        </Route>
+        <Route path='/user' element={<UserManagement/>}>
         <Route
-          path="/dashboard"
+          index
           element={
             
               <Dashboard />
             
           }
         />
+        <Route path="/user/learn" element={<Learn />} />
+        <Route path="/user/marketplace" element={<Marketplace />} />
+        <Route path="/user/vr" element={<VirtualReality/>} />
+        </Route>
         <Route
           path="/admin"
           element={

@@ -1,8 +1,8 @@
 import React from 'react'
-
+import Carousel from '../components/Carousel'
 function Explore() {
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 mt-14">
       <h1 className="text-3xl font-bold text-gray-900">Explore Historical Sites</h1>
       <p className="mt-2 text-gray-600">
         Discover Tunisia's most remarkable historical locations through interactive 3D experiences.
@@ -21,6 +21,9 @@ function Explore() {
           <h2 className="text-xl font-semibold">Kairouan</h2>
           <p className="mt-2 text-gray-600">Islamic heritage and mosques</p>
         </div>
+      </div>
+      <div className='w-full flex justify-center items-center'>
+      <Carousel/>
       </div>
     </div>
   )

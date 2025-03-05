@@ -1,24 +1,69 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { FaUser, FaLock, FaEnvelope, FaCheck } from 'react-icons/fa'; // Icons
-import useAuthStore from '../stores/authStore';
+import { FaUser, FaLock, FaEnvelope, FaCheck } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
+import useAuthStore from '../stores/authStore'; // Import the zustand store
+import axios from 'axios'; // Import axios for making API requests
 
 function Auth() {
   const [isLogin, setIsLogin] = useState(true);
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
-  const { signIn, signUp } = useAuthStore();
   const [error, setError] = useState(null);
+  const navigate = useNavigate(); // Initialize navigate
+  const { signIn, signUp } = useAuthStore(); // Use signIn and signUp actions from the store
+
+  // Static users for testing
+  const staticUsers = [
+    { email: 'user@gmail.com', password: 'user123', role: 'user' },
+    { email: 'admin@gmail.com', password: 'admin123', role: 'admin' },
+  ];
 
   const onSubmit = async (data) => {
     try {
       setError(null);
-      if (isLogin) {
-        await signIn(data.email, data.password);
+
+      // 1. Check from Static Users First
+      const foundUser = staticUsers.find(
+        (user) => user.email === data.email && user.password === data.password
+      );
+
+      if (foundUser) {
+        // If found in static array, sign in and redirect
+        if (foundUser.role === 'user') {
+          signIn(data.email, data.password);
+          navigate('/user');
+        } else if (foundUser.role === 'admin') {
+          signIn(data.email, data.password);
+          navigate('/admin');
+        }
       } else {
-        await signUp(data.email, data.password, data.name);
+        // 2. If not found in static array, check the database (async operation)
+        try {
+          // Make a request to the backend to verify credentials
+          const response = await axios.post('/api/auth/login', {
+            email: data.email,
+            password: data.password,
+          });
+
+          const user = response.data; // Assuming the API returns user data on successful login
+
+          if (user) {
+            // If user is found in database, sign in and redirect based on role
+            signIn(user.email, user.password);
+            if (user.role === 'user') {
+              navigate('/user');
+            } else if (user.role === 'admin') {
+              navigate('/admin');
+            }
+          } else {
+            setError('Invalid email or password');
+          }
+        } catch (err) {
+          setError('Something went wrong with the database request');
+        }
       }
     } catch (err) {
-      setError(err.message);
+      setError('An unexpected error occurred');
     }
   };
 

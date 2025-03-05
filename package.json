@@ -13,6 +13,8 @@
     "@heroicons/react": "^2.1.1",
     "@react-three/drei": "^9.99.0",
     "@react-three/fiber": "^8.15.16",
+    "aframe": "^1.7.0",
+    "axios": "^1.8.1",
     "chart.js": "^4.4.1",
     "framer-motion": "^11.0.3",
     "react": "^18.2.0",
@@ -23,6 +25,7 @@
     "react-icons": "^5.5.0",
     "react-router-dom": "^6.22.0",
     "react-toastify": "^11.0.5",
+    "styled-components": "^6.1.15",
     "three": "^0.161.0",
     "tuniquest": "file:",
     "zustand": "^4.5.0"

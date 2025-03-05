@@ -1,5 +1,5 @@
 import React from "react";
-import tuniquestLogo from '../../public/icon.png';
+import tuniquestLogo from '../assets/icon.png';
 const TuniQuest = () => {
   return (
       <>
@@ -7,7 +7,7 @@ const TuniQuest = () => {
         <div className="col-span-6 mx-auto">
           <img 
             src={tuniquestLogo}
-            className="mx-auto h-56 rounded-2xl lg:h-80 md:h-96 w-9/12" 
+            className="mx-auto h-56 rounded-2xl lg:h-80 md:h-96 w-full" 
             alt="TuniQuest" 
             loading="lazy" 
           />
